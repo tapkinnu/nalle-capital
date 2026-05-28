@@ -33,3 +33,35 @@ document.addEventListener('DOMContentLoaded', () => {
   style.textContent = '.visible { opacity: 1 !important; transform: translateY(0) !important; }';
   document.head.appendChild(style);
 });
+
+// Photo gallery
+(function () {
+  const track = document.querySelector('.gallery-track');
+  const slides = document.querySelectorAll('.gallery-slide');
+  const thumbs = document.querySelectorAll('.gallery-thumb');
+  const counter = document.getElementById('gallery-current');
+  if (!track || !slides.length) return;
+
+  let current = 0;
+
+  function goTo(n) {
+    current = (n + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    thumbs.forEach((t, i) => t.classList.toggle('active', i === current));
+    counter.textContent = current + 1;
+    // Scroll active thumb into view
+    thumbs[current].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+  }
+
+  document.querySelector('.gallery-prev').addEventListener('click', () => goTo(current - 1));
+  document.querySelector('.gallery-next').addEventListener('click', () => goTo(current + 1));
+  thumbs.forEach((t, i) => t.addEventListener('click', () => goTo(i)));
+
+  // Touch/swipe support
+  let touchStartX = 0;
+  track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1);
+  });
+})();
