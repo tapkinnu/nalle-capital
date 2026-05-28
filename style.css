@@ -574,3 +574,140 @@ body {
   .focus-grid { grid-template-columns: 1fr; }
   .hero { padding: 7rem 1.5rem 4rem; }
 }
+
+/* LISTINGS */
+.listings {
+  padding: 7rem 2rem;
+  background: var(--white);
+}
+
+.listings-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 1rem;
+}
+
+.listing-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(13,27,46,0.07);
+}
+
+.listing-img {
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+}
+
+.listing-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.listing-card:hover .listing-img img {
+  transform: scale(1.03);
+}
+
+.listing-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.85rem;
+  border-radius: 3px;
+}
+
+.listing-info {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.listing-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: var(--navy);
+  line-height: 1.35;
+}
+
+.listing-price {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--gold);
+  font-family: 'Playfair Display', serif;
+  line-height: 1;
+}
+
+.listing-price span {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+.listing-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.listing-meta span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--navy);
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 0.25rem 0.75rem;
+  border-radius: 3px;
+}
+
+.listing-desc {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.8;
+}
+
+.listing-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.listing-features span {
+  font-size: 0.75rem;
+  color: var(--gold);
+  border: 1px solid rgba(184,151,58,0.4);
+  padding: 0.22rem 0.65rem;
+  border-radius: 3px;
+}
+
+.listing-btn {
+  align-self: flex-start;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .listing-card {
+    grid-template-columns: 1fr;
+  }
+  .listing-img {
+    min-height: 260px;
+  }
+}
